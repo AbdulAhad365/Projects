@@ -115,7 +115,7 @@ class Scratch {
                             }
                             else {
                                 System.out.println("**************************************");
-                                System.out.println("CONGRATULATIONS YOUR COUSE HAS BEEN REGISTERED");
+                                System.out.println("CONGRATULATIONS YOUR COURSE HAS BEEN REGISTERED");
                                 System.out.println("**************************************");
                             }
                     } // Main condition closing
