@@ -1,0 +1,639 @@
+# Game of Tick tac toe for the single player,multiplayer.
+
+# """Following are the three cases for playing(multiplayer or single player) or not to playing."""
+# For multiplayer player mode press 1
+# For single player mode press 2
+# To exit press 3
+play = True
+while True and play == True:
+    print('                                                                                                          ')
+    print('____________________________w E L C O ME____________________________ \n____________________________                TO____________________________\n____________________________                      T I C    T A C   T O E____________________________')
+    print('                                                                                                          ')
+    print('enter a number 1 to 3')
+    number = (input(
+        'enter "1" for _____________ multiplayer _____________\n  enter "2" for __________single player_____________\n  enter "3" to ______________exit_____________  '))
+    if number.isdigit() and (int(number) >= 1 or int(number) <= 3):
+        number = int(number)
+
+        if number == 1:
+
+            # This game for the multiplayer player
+            import random
+
+            y = 1
+            z = 0
+
+            print('___________________________        Now enter your names user1 and user2            ________________')
+            format = ['-', '-', '-',
+                      # 0    1     2
+                      '-', '-', '-',
+                      # 3    4     5
+                      '-', '-', '-']
+            # 6    7     8
+
+            x = 0
+            # Now enter the names of the players
+            name1 = input('Enter your name user1 ')
+            name2 = input('Enter your name user2 ')
+            # Time for the toss
+            toss = ['heads', 'tails']
+            choice = random.choice(toss)  # User1 will choose
+            use1 = input(
+                f'{name1} "heads" or "tails" ').lower()  # User 1 will choose if he want to select heads or tails
+
+            # for continuing the loop i am going to do do is to make a symbol untill user will not enter correct toss it qwwill not execute
+            while True:
+                if use1 == 'heads' or use1 == 'tails':
+
+                    break
+                else:
+                    use1 = input(f'{name1} "heads" or "tails" ').lower()
+                    continue
+
+            while use1 == 'heads' or use1 == 'tails' or use1 != 'heads' or use1 != 'tails':
+
+                if use1 == choice:
+                    symbol = input(f'{name1} enter your symbol  "O" or "X" ').upper()
+                    # for the case if user1 wins
+
+                    if (symbol == 'O' or symbol == 'X'):
+                        if symbol == 'X':
+                            symbol1 = 'O'
+                            break
+                        elif symbol == 'O':
+                            symbol1 = 'X'
+                            break
+
+                    else:
+                        print('Enter a valid symbol')
+                        continue
+
+                # for user 2
+                elif (use1 == 'heads' and choice == 'tails') or (
+                        use1 == 'tails' and choice == 'heads'):  # for the case to loose toss
+                    symbol1 = input(f'{name2} enter your symbol  "O" or "X" ').upper()
+                    if (symbol1 == 'O' or symbol1 == 'X'):
+                        if symbol1 == 'X':
+                            symbol = 'O'
+                            break
+                        elif symbol1 == 'O':
+                            symbol = 'X'
+                            break
+
+                    else:
+                        print('Enter a valid symbol')
+                        continue
+
+            if use1 == choice:  # The conditions and symbols for user 1
+                print('*********** CONGRATULATION ************')
+                print(f'{name1} has won the toss')
+
+                if symbol == 'X':  # here symbol shows for the user 1
+                    symbol = 'X'  # symbol2 for user 2
+                    symbol1 = 'O'
+                    print(f'{name1} has a symbol of {symbol}')
+                    print(f'{name2} has a symbol of {symbol1}')
+                elif symbol == 'O':
+                    symbol = 'O'
+                    symbol1 = 'X'
+                    print(f'{name1} has a symbol of {symbol}')
+                    print(f'{name2} has a symbol of {symbol1}')
+
+
+                else:
+                    print('Invalid symbol entered')
+
+            elif (use1 == 'heads' and choice == 'tails') or (
+                    use1 == 'tails' and choice == 'heads'):  # The conditions for the user 2
+                print('*********** CONGRATULATION ************')
+                print(f'{name2} has won the toss')
+                # User2 will choose
+                if symbol1 == 'X':
+                    symbol1 = 'X'
+                    symbol = 'O'
+                    print(f'{name2} has a symbol of {symbol1}')
+                    print(f'{name1} has a symbol of {symbol}')
+                elif symbol1 == 'O':
+                    symbol1 = 'O'
+                    symbol = 'X'
+                    print(f'{name2} has a symbol of {symbol1}')
+                    print(f'{name1} has a symbol of {symbol}')
+
+
+                else:
+                    print('Invalid symbol entered')
+
+            else:
+                print('invalid value entered')
+
+
+            def display_format():
+                """" Now what we have to do is to create a array of lists haveing dashes that are going to be interliked by
+                     coloumn sign  by the means of sotring it in anyother variable"""
+                # Array always start in the form of the list that starts from 0 to so on.
+
+                print(format[0], "|", format[1], "|", format[2])
+                print('-----------')
+                print(format[3], "|", format[4], "|", format[5])
+                print('-----------')
+                print(format[6], "|", format[7], "|", format[8])
+
+
+            def for_clearence():
+                print(1, "|", 2, "|", 3)
+                print('-----------')
+                print(4, "|", 5, "|", 6)
+                print('-----------')
+                print(7, "|", 8, "|", 9)
+
+
+            def player1():
+                # Now here we will define the user1 value
+                z = 0
+                while True and z == 0:
+                    play1 = (input(f'Enter a number 1 to 9 {name1}'))
+                    if play1.isdigit():
+                        play1 = int(play1)
+
+                        play1 = play1 - 1  # we have subtracted it from -1 because indexes ranges from 0 to 8 in format variable
+                        if play1 >= 0 and play1 <= 8:
+
+                            while format[play1] == '-' or format[play1] == 'X' or format[play1] == 'O':
+                                if format[play1] == '-':
+                                    if symbol == 'X':
+                                        symbol1 = 'O'
+                                        format[play1] = symbol
+                                        z = 1
+                                        break
+
+
+
+                                    elif symbol == 'O':
+                                        symbol1 = 'X'
+                                        format[play1] = symbol
+                                        z = 1
+                                        break
+                                else:
+                                    print('Space occupiued')
+                                    play1 = int(input(f'Enter a number 1 to 9 {name1}'))
+                                    play1 = play1 - 1  # we have subtracted it from -1 because indexes ranges from 0 to 8 in format variable
+                                    continue
+
+
+                        else:
+                            print('Out of index')
+                            continue
+                    else:
+                        print('not a number')
+                        continue
+                print('2nd player turn')
+
+
+            def player2():  # Now here we will define the user1 value
+
+                z = 0
+                while True and z == 0:
+                    play2 = (input(f'Enter a number 1 to 9 {name2}'))
+                    if play2.isdigit():
+                        play2 = int(play2)
+
+                        play2 = play2 - 1  # we have subtracted it from -1 because indexes ranges from 0 to 8 in format variable
+                        if play2 >= 0 and play2 <= 8:
+
+                            while format[play2] == '-' or format[play2] == 'X' or format[play2] == 'O':
+                                if format[play2] == '-':
+                                    if symbol1 == 'X':
+                                        symbol = 'O'
+                                        format[play2] = symbol1
+                                        z = 1
+                                        break
+
+
+
+                                    elif symbol1 == 'O':
+                                        symbol = 'X'
+                                        format[play2] = symbol1
+                                        z = 1
+                                        break
+                                else:
+                                    print('Space occupiued')
+                                    play2 = int(input(f'Enter a number 1 to 9 {name2}'))
+                                    play2 = play2 - 1  # we have subtracted it from -1 because indexes ranges from 0 to 8 in format variable
+                                    continue
+
+
+
+                        else:
+                            print('Out of index')
+                            continue
+                    else:
+                        print('is not a number')
+                        continue
+                print('1st player turn')
+
+
+            start = input('Enter "ready" to start & "stop" to stop').lower()
+            if start=='stop':
+                print('___________Game over_________')
+                continue
+
+
+            for_clearence()
+            while (start == 'ready') or (start != 'ready' and start != 'stop'):
+                if start == 'ready' and start != 'stop':
+
+                    while True and z == 0:
+
+                        while start == 'ready' and start != 'stop':
+                            while True and y != 0:
+                                player1()
+
+                                display_format()
+                                # for the rows
+                                if ((format[0] == format[1] == format[2] == symbol) or (
+                                        format[3] == format[4] == format[5] == symbol) or (
+                                        format[6] == format[7] == format[8] == symbol)):
+                                    y = 0  # here y is  used in further while loop
+                                    print(f'{name1} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+                                    # for the diagonals
+                                elif (format[0] == format[4] == format[8] == symbol) or (
+                                        format[2] == format[4] == format[6] == symbol):
+                                    y = 0  # hERE y is used for ending the while loop
+                                    print(f'{name1} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+                                    # Now for the coloumns:
+                                elif (format[0] == format[3] == format[6] == symbol) or (
+                                        format[1] == format[4] == format[7] == symbol) or (
+                                        format[2] == format[5] == format[8] == symbol):
+                                    y = 0
+                                    print(f'{name1} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+                                if (format[0] != '-' and format[1] != '-' and format[2] != '-' and format[3] != '-' and
+                                        format[
+                                            4] != '-' and
+                                        format[5] != '-' and format[6] != '-' and format[7] != '-' and format[
+                                            8] != '-'):
+                                    y = 0
+                                    break
+                                player2()
+                                display_format()
+                                # for the rows
+                                if (format[0] == format[1] == format[2] == symbol1) or (
+                                        format[3] == format[4] == format[5] == symbol1) or (
+                                        format[6] == format[7] == format[8] == symbol1):
+                                    y = 0
+                                    print(f'{name2} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+
+                                    # for the diagonals
+                                elif (format[0] == format[4] == format[8] == symbol1) or (
+                                        format[2] == format[4] == format[6] == symbol1):
+                                    y = 0
+                                    print(f'{name2} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+
+                                    # Now for the coloumns:
+                                elif (format[0] == format[3] == format[6] == symbol1) or (
+                                        format[1] == format[4] == format[7] == symbol1) or (
+                                        format[2] == format[5] == format[8] == symbol1):
+                                    y = 0
+                                    print(f'{name2} wins ')
+                                    print('*****************')
+                                    print('Congratulations')
+                                    break
+
+                            print('end')  # for ending  the code
+                            if y == 0:
+
+                                break
+                            else:
+                                pass
+                            print('Game ended')
+                        start = input('Enter "ready" to play again & "stop" to end').lower()
+                        y = 1
+                        if (start == 'ready'):
+                            for_clearence()
+
+                            format[0] = '-'
+                            format[1] = '-'
+                            format[2] = '-'
+                            format[3] = '-'
+                            format[4] = '-'
+                            format[5] = '-'
+                            format[6] = '-'
+                            format[7] = '-'
+                            format[8] = '-'
+                            name1 = input('Enter your name user1 ')
+                            name2 = input('Enter your name user2 ')
+                            # Time for the toss
+                            toss = ['heads', 'tails']
+                            choice = random.choice(toss)  # User1 will choose
+                            use1 = input(
+                                f'{name1} "heads" or "tails" ').lower()  # User 1 will choose if he want to select heads or tails
+
+                            # for continuing the loop i am going to do do is to make a symbol untill user will not enter correct toss it qwwill not execute
+                            while True:
+                                if use1 == 'heads' or use1 == 'tails':
+
+                                    break
+                                else:
+                                    use1 = input(f'{name1} "heads" or "tails" ').lower()
+                                    continue
+
+                            while use1 == 'heads' or use1 == 'tails' or use1 != 'heads' or use1 != 'tails':
+
+                                if use1 == choice:
+                                    symbol = input(f'{name1} enter your symbol  "O" or "X" ').upper()
+                                    # for the case if user1 wins
+
+                                    if (symbol == 'O' or symbol == 'X'):
+                                        if symbol == 'X':
+                                            symbol1 = 'O'
+                                            break
+                                        elif symbol == 'O':
+                                            symbol1 = 'X'
+                                            break
+
+                                    else:
+                                        print('Enter a valid symbol')
+                                        continue
+
+                                # for user 2
+                                elif (use1 == 'heads' and choice == 'tails') or (
+                                        use1 == 'tails' and choice == 'heads'):  # for the case to loose toss
+                                    symbol1 = input(f'{name2} enter your symbol  "O" or "X" ').upper()
+                                    if (symbol1 == 'O' or symbol1 == 'X'):
+                                        if symbol1 == 'X':
+                                            symbol = 'O'
+                                            break
+                                        elif symbol1 == 'O':
+                                            symbol = 'X'
+                                            break
+
+                                    else:
+                                        print('Enter a valid symbol')
+                                        continue
+
+                            if use1 == choice:  # The conditions and symbols for user 1
+                                print('*********** CONGRATULATION ************')
+                                print(f'{name1} has won the toss')
+
+                                if symbol == 'X':  # here symbol shows for the user 1
+                                    symbol = 'X'  # symbol2 for user 2
+                                    symbol1 = 'O'
+                                    print(f'{name1} has a symbol of {symbol}')
+                                    print(f'{name2} has a symbol of {symbol1}')
+                                elif symbol == 'O':
+                                    symbol = 'O'
+                                    symbol1 = 'X'
+                                    print(f'{name1} has a symbol of {symbol}')
+                                    print(f'{name2} has a symbol of {symbol1}')
+
+
+                                else:
+                                    print('Invalid symbol entered')
+
+                            elif (use1 == 'heads' and choice == 'tails') or (
+                                    use1 == 'tails' and choice == 'heads'):  # The conditions for the user 2
+                                print('*********** CONGRATULATION ************')
+                                print(f'{name2} has won the toss')
+                                # User2 will choose
+                                if symbol1 == 'X':
+                                    symbol1 = 'X'
+                                    symbol = 'O'
+                                    print(f'{name2} has a symbol of {symbol1}')
+                                    print(f'{name1} has a symbol of {symbol}')
+                                elif symbol1 == 'O':
+                                    symbol1 = 'O'
+                                    symbol = 'X'
+                                    print(f'{name2} has a symbol of {symbol1}')
+                                    print(f'{name1} has a symbol of {symbol}')
+
+
+                                else:
+                                    print('Invalid symbol entered')
+
+                            else:
+                                print('invalid value entered')
+                                continue
+                        else:
+                            z = 1
+                            break
+                elif start != 'ready' and start != 'stop':
+                    start = input('enter "ready" to go and "stop" to end')
+
+                    continue
+
+
+                else:
+
+                    break
+            print('                --_____________Game over______________')
+
+
+
+
+
+
+        elif number == 2:
+
+
+            if number == 2:
+                import random
+
+                print('                                  Enter your name player 1                            ')
+
+
+                def display_board():
+
+                    print(board[1], "|", board[2], "|", board[3])
+                    print('-----------')
+                    print(board[4], "|", board[5], "|", board[6])
+                    print('-----------')
+                    print(board[7], "|", board[8], "|", board[9])
+
+
+                def toss(name):
+                    while True:
+
+                        ask_user = input('heads or tails      ').lower()
+                        if ask_user == 'heads' or ask_user == 'tails':
+                            random_value = ['heads', 'tails']
+                            store_value = random.choice(random_value)
+                            if ask_user == store_value:
+                                print(f'{name} has won the toss')
+                                return True
+                            else:
+                                print(f'{name} has lost the toss')
+                                return False
+                        else:
+                            print('enter valid value')
+                            continue
+
+
+                def user_choice():
+                    while True:
+
+                        inp = input("Choose Your Mark(X/O)      ").lower()
+                        if inp == 'x':
+                            print(f"{name} YOU Choose x")
+                            return 'x', 'o'
+                        if inp == 'o':
+                            print(f"{name}  YOU Choose O")
+                            return 'o', 'x'
+                        else:
+                            print(name, "Enter The Correct Mark")
+
+
+                def human_input(mark):
+                    while True:
+                        inp = input(f"{name} Enter Place Number Where You Want To Place The Mark")
+                        if inp.isdigit() and int(inp) < 10 and int(inp) > 0:
+                            inp = int(inp)
+                            if board[inp] == '  ':
+                                return inp
+                            else:
+                                print(f"{name} The Place You Entered Is Already Occupied")
+                        else:
+                            print("Enter  Correct  Input ")
+
+
+                def winning_check(human, cpu):
+                    winning_places = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9],
+                                      [3, 5, 7]]
+                    for win_place in winning_places:
+                        if board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == human:
+                            print(f"{name}  Wins  The  Game")
+                            inp = new_game()
+                            if not inp:
+                                return False
+                        elif board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == cpu:
+                            print(" CPU  Wins  The  Game")
+                            inp = new_game()
+                            if not inp:
+                                return False
+                    if '  ' not in board:
+                        print("--------------------Game  Draw-------------------")
+                        inp = new_game()
+                        if not inp:
+                            return False
+                    return True
+
+
+                def new_game():
+                    while True:
+                        inp = input("Do You Want To Play The Next Game Press Y/N     ")
+                        if inp in ['y', 'Y']:
+                            again = True
+                            break
+                        elif inp in ['n', 'N']:
+                            again = False
+                            break
+                        else:
+                            print(name, " Enter Correct Input")
+                    if again:
+                        print("  _________Lets go for the new game________________")
+                        main_game()
+                    else:
+                        print(f"{name}\n-----------------GOOD BYE----------------")
+                        return False
+
+
+                def winning(mark, board):
+                    winning_places = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9],
+                                      [3, 5, 7]]
+                    for win_place in winning_places:
+                        if board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == mark:
+                            return True
+                        else:
+                            False
+
+
+                def win_move(i, board, cpu):
+                    temp_board = list(board)
+                    temp_board[i] = cpu
+                    if winning(cpu, temp_board):
+                        return True
+                    else:
+                        return False
+
+
+                def cpu_input(cpu, human, board):
+                    for i in range(1, 10):
+                        if board[i] == '  ' and win_move(i, board, cpu):
+                            return i
+                        for i in range(1, 10):
+                            if board[i] == '  ' and win_move(i, board, human):
+                                return i
+                        for i in [5, 1, 7, 3, 2, 9, 8, 6, 4]:
+                            if board[i] == '  ':
+                                return i
+
+
+                def main_game():
+                    global board, name
+                    name = input("  Enter Your Name   ")
+                    play = True
+                    board = ['', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ']
+                    # 0    1   2    3     4    5      6    7      8     9
+                    who_will_win = toss(name)
+                    human, cpu = user_choice()
+
+                    print(1, "|", 2, "|", 3)
+                    print('-----------')
+                    print(4, "|", 5, "|", 6)
+                    print('-----------')
+                    print(7, "|", 8, "|", 9)
+                    while play:
+
+                        if who_will_win == True:
+                            x = human_input(human)
+                            board[x] = human
+                            display_board()
+                            play = winning_check(human, cpu)
+                            if play:
+                                print("Computer's Move")
+                                o = cpu_input(cpu, human, board)
+                                board[o] = cpu
+                                display_board()
+                                play = winning_check(human, cpu)
+                        else:
+                            print("Computer's Move")
+                            x = cpu_input(cpu, human, board)
+                            board[x] = cpu
+                            display_board()
+                            play = winning_check(human, cpu)
+                            if play:
+                                o = human_input(human)
+                                board[o] = human
+                                display_board()
+                                play = winning_check(human, cpu)
+
+
+                main_game()
+
+            # This game is for the single player.
+
+            pass
+        elif number == 3:
+            # This mode is to exist
+            print('______________Good bye______________!!!')
+            print(' ____________________________________________Have a nice day_______________________')
+            break
+
+    else:
+        print('enter a valid number')
+        continue
+
+
